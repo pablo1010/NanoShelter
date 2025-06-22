@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NanoShelter™ – Shelter In Your Pocket</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+      color: #ffffff;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #00ffc3;
+      text-shadow: 0 0 10px rgba(0, 255, 195, 0.7);
+      animation: fadeInDown 1.5s ease;
+    }
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      color: #eee;
+      animation: fadeIn 2s ease;
+    }
+    p {
+      animation: fadeIn 2.5s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .product-image {
+      max-width: 90%;
+      height: auto;
+      margin-top: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 255, 195, 0.3);
+      animation: fadeIn 3s ease;
+    }
+    form {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 1.5rem;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 15px rgba(0, 255, 195, 0.4);
+      margin-top: 2rem;
+    }
+    input[type="text"], input[type="email"] {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
+    button {
+      padding: 0.75rem;
+      font-size: 1.1rem;
+      background: #00ffc3;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .countdown {
+      margin-top: 3rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #fffd7f;
+      background: #1c1c1c;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      animation: fadeIn 4s ease;
+    }
+    .highlight {
+      color: #00ffc3;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>NanoShelter™</h1>
+  <h2>The World’s First Pocket-Sized, Waterproof Pop-Up Tent</h2>
+  <p>Be the first to experience <span class="highlight">true freedom</span> in every forecast. Sign up below to get priority access, launch discounts, and early release alerts.</p>
+
+  <img class="product-image" src="nanoshelter-product.png" alt="NanoShelter Tent Render" />
+
+  <form action="https://formspree.io/f/mwkgbbno" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email Address" required />
+    <input type="hidden" name="_subject" value="New NanoShelter Waitlist Signup!" />
+    <input type="hidden" name="_next" value="https://nanoshelter.netlify.app/thank-you.html" />
+    <button type="submit">Join the Waitlist</button>
+  </form>
+
+  <div class="countdown" id="countdown"></div>
+
+  <script>
+    const launchDate = new Date("2025-08-01T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdown.innerHTML = "🚀 NanoShelter is now LIVE!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdown.innerHTML = `🚨 Launching in: <span class="highlight">${days}d ${hours}h ${minutes}m ${seconds}s</span>`;
+    }, 1000);
+  </script>
+</body>
+</html>
