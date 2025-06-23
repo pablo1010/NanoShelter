@@ -135,6 +135,20 @@
   </p>
 
   <div class="countdown" id="countdown"></div>
+<div style="margin-top: 1.5rem;">
+  <button onclick="openSurvey()" style="padding: 0.8rem 1.2rem; background-color: #007FEF; color: white; border: none; border-radius: 0.5rem; font-size: 1rem; cursor: pointer;">
+    Complete Survey
+  </button>
+</div>
+
+<script>
+  function openSurvey() {
+    const script = document.createElement('script');
+    script.type = "text/javascript";
+    script.src = "https://form.jotform.com/jsform/251733407132045";
+    document.body.appendChild(script);
+  }
+</script>
 
   <form id="waitlist-form">
     <input type="text" name="name" placeholder="Your Name" required />
