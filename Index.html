@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>NanoShelter Launch</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+        }
+        .header {
+            background: url('Polish_20250623_092116349.png') center/cover no-repeat;
+            padding: 4rem 1rem;
+            color: #00ffc3;
+        }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .header p {
+            font-size: 1.25rem;
+            color: #f1f1f1;
+        }
+        .highlight {
+            color: #00ffc3;
+            font-weight: bold;
+        }
+        .product-showcase {
+            background-color: #111;
+            padding: 2rem 1rem;
+        }
+        .product-showcase img {
+            max-width: 90%;
+            height: auto;
+            border-radius: 1rem;
+            margin: 1rem 0;
+            box-shadow: 0 0 30px rgba(0, 255, 200, 0.4);
+        }
+        .form {
+            margin-top: 2rem;
+        }
+        .form input {
+            padding: 1rem;
+            margin: 0.5rem;
+            width: 80%;
+            max-width: 400px;
+            border: none;
+            border-radius: 8px;
+        }
+        .form button {
+            padding: 1rem 2rem;
+            background-color: #00ff5e;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+        .countdown {
+            font-size: 2rem;
+            margin-top: 2rem;
+            background-color: #000;
+            color: #00ffc3;
+            font-weight: bold;
+            padding: 1rem;
+            box-shadow: 0 0 20px #00ffc3;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .countdown {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>NanoShelter™</h1>
+        <p>The World’s First <span class="highlight">Pocket-Sized, Waterproof Pop-Up Tent</span></p>
+        <p>Be the first to experience <span class="highlight">true freedom</span> in every forecast.</p>
+    </div>
+
+    <div class="product-showcase">
+        <img src="nanoshelter-product-header.png" alt="NanoShelter Pack"/>
+        <img src="Polish_20250623_092116349.png" alt="NanoShelter Tent"/>
+        <div class="form">
+            <form action="https://formspree.io/f/mzblygrn" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required><br>
+                <input type="email" name="email" placeholder="Your Email Address" required><br>
+                <button type="submit">Join the Waitlist</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="countdown" id="countdown">Launching in: </div>
+
+    <script>
+        const countdown = document.getElementById("countdown");
+        const launchDate = new Date("2025-08-01T00:00:00Z").getTime();
+
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const diff = launchDate - now;
+
+            if (diff <= 0) {
+                countdown.innerText = "Now Launching!";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            countdown.innerText = `Launching in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        };
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
