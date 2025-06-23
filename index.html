@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NanoShelter™</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: white;
+      background: #000;
+      text-align: center;
+    }
+    .hero {
+      background: url('nanoshelter-product-header.png') no-repeat center center/cover;
+      padding: 100px 20px 200px;
+      position: relative;
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #00ffcc;
+      margin: 0;
+    }
+    p {
+      font-size: 1.1rem;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input, button {
+      padding: 12px;
+      margin: 5px;
+      width: 90%;
+      max-width: 300px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    button {
+      background: green;
+      color: white;
+      cursor: pointer;
+    }
+    .countdown {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-top: 30px;
+      color: #00ffcc;
+      text-shadow: 0 0 8px #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <h1>NanoShelter™</h1>
+    <p>The World’s First Pocket-Sized, Waterproof Pop-Up Tent</p>
+    <p>Be the first to experience <strong style="color:#00ffcc">true freedom</strong> in every forecast. Sign up below to get priority access, launch discounts, and early release alerts.</p>
+    <form action="https://formspree.io/f/xvgrwakj" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required><br>
+      <input type="email" name="email" placeholder="Your Email Address" required><br>
+      <input type="hidden" name="_redirect" value="thank-you.html">
+      <button type="submit">Join the Waitlist</button>
+    </form>
+    <div class="countdown" id="countdown">Launching in: --d --h --m --s</div>
+  </div>
+  <script>
+    const launchDate = new Date("2025-08-01T00:00:00");
+    const countdown = document.getElementById("countdown");
+    function updateCountdown() {
+      const now = new Date();
+      const diff = launchDate - now;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const seconds = Math.floor((diff / 1000) % 60);
+      countdown.textContent = `Launching in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
