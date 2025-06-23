@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NanoShelter™ | Pocket-Sized Waterproof Tent</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('nanoshelter-product-header.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 { color: #00ffae; font-size: 2.5rem; margin-top: 1rem; }
+    p { font-size: 1.2rem; max-width: 600px; margin: 1rem auto; }
+    .countdown { font-size: 1.8rem; font-weight: bold; color: #00ffae; margin: 2rem 0; }
+    form { display: flex; flex-direction: column; gap: 1rem; max-width: 400px; margin: auto; }
+    input, button {
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #00ffae;
+      color: black;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00d49c;
+    }
+  </style>
+</head>
+<body>
+  <h1>NanoShelter™</h1>
+  <p>The World’s First Pocket-Sized, Waterproof Pop-Up Tent</p>
+  <p>
+    Be the first to experience <strong style="color: #00ffae;">true freedom</strong> in every forecast.
+    Sign up below to get priority access, launch discounts, and early release alerts.
+  </p>
+  <div class="countdown" id="countdown"></div>
+  <form action="https://formspree.io/f/xvgrwakj" method="POST">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="hidden" name="_redirect" value="https://nanoshelter.netlify.app/thank-you.html" />
+    <button type="submit">Join the Waitlist</button>
+  </form>
+  <script>
+    const launchDate = new Date("2025-08-01T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = `Launching in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
