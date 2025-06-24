@@ -1,0 +1,196 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NanoShelter™</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    .splash {
+      position: fixed;
+      width: 100%;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      flex-direction: column;
+    }
+    .main-content {
+      display: none;
+      padding: 1rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    video {
+      width: 100%;
+      height: auto;
+    }
+    .logo {
+      width: 80%;
+      max-width: 300px;
+      margin: 1rem auto;
+      display: block;
+    }
+    h1, h2 {
+      text-align: center;
+    }
+    .countdown, .waitlist, .features, .video-container, .collapsible-container {
+      margin: 1rem 0;
+      padding: 1rem;
+      background: #111;
+      border-radius: 10px;
+    }
+    input, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      border-radius: 5px;
+      border: none;
+    }
+    .collapsible {
+      background-color: #007FEF;
+      color: white;
+      cursor: pointer;
+      padding: 1rem;
+      text-align: left;
+      outline: none;
+      font-size: 1.1rem;
+      width: 100%;
+      border-radius: 5px;
+      border: none;
+    }
+    .content {
+      padding: 0 1rem;
+      display: none;
+      overflow: hidden;
+      background-color: #1a1a1a;
+      border-radius: 5px;
+      margin-top: 0.5rem;
+    }
+    #survey-btn {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: #007FEF;
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border: none;
+      border-radius: 5px;
+      z-index: 10000;
+    }
+    iframe {
+      width: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash screen -->
+  <div class="splash" id="splash-screen">
+    <video id="splash-video" autoplay muted playsinline>
+      <source src="Neon.mp4" type="video/mp4">
+    </video>
+    <button onclick="hideSplash()">Skip</button>
+  </div>
+
+  <div class="main-content" id="main-content">
+    <img src="1750697474500.png" alt="NanoShelter Logo" class="logo" />
+    <p>The World’s First Pocket-Sized, Waterproof Pop-Up Tent</p>
+    <p><strong style="color: #00ffae;">True freedom</strong> in every forecast. Sign up below for alerts, discounts, and updates.</p>
+
+    <div class="countdown" id="countdown"></div>
+
+    <form class="waitlist" id="waitlist-form">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <button type="submit">Join the Waitlist</button>
+    </form>
+
+    <div class="collapsible-container">
+      <button class="collapsible">Our Story</button>
+      <div class="content">
+        <p><strong>The Problem:</strong> Nature is unpredictable. When the rain hits or wind howls, traditional tents are slow, heavy, and cumbersome. Urban travelers and outdoor lovers alike need a quick, compact solution.</p>
+        <p><strong>How It Started:</strong> I was out with friends on our motorbikes. The forecast looked clear, so we rode out in just our clothes. But the skies opened up with torrential rain. We had no shelter and couldn’t carry bulky tents. That’s when it hit me — what if we had a tent that could fit in a pocket and deploy in seconds?</p>
+        <p><strong>The Solution:</strong> NanoShelter™ is a revolutionary, patent-pending micro-tent that folds into your pocket and deploys in under 10 seconds. 100% waterproof, ultralight, and built for modern on-the-go protection.</p>
+      </div>
+    </div>
+
+    <div class="collapsible-container">
+      <button class="collapsible">Why Choose NanoShelter™?</button>
+      <div class="content">
+        <ul>
+          <li><strong>✔ 100% Waterproof Protection:</strong> Stay dry in any weather.</li>
+          <li><strong>✔ Pocket-Sized Convenience:</strong> Fits in your jacket or cargo pocket.</li>
+          <li><strong>✔ 3-Second Setup:</strong> No poles. No stress. Just pop it open.</li>
+          <li><strong>✔ All-Terrain Utility:</strong> Use it anywhere – forest, fields, roadside.</li>
+          <li><strong>✔ Ultra Lightweight & Durable:</strong> Built tough, carried light.</li>
+          <li><strong>✔ Perfect for:</strong> Travel, hikes, festivals, emergencies & more.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="video-container">
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/XOkRyBj3GAI" title="NanoShelter Video" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <button id="survey-btn" onclick="openSurvey()">Complete Survey</button>
+
+  <script>
+    // Splash screen logic
+    const splash = document.getElementById('splash-screen');
+    const mainContent = document.getElementById('main-content');
+    const splashVideo = document.getElementById('splash-video');
+
+    splashVideo.onended = () => hideSplash();
+    function hideSplash() {
+      splash.style.display = 'none';
+      mainContent.style.display = 'block';
+    }
+
+    // Countdown Timer
+    const launchDate = new Date("2026-09-14T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = `Launching in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+
+    // Collapsible sections
+    const collapsibles = document.querySelectorAll(".collapsible");
+    collapsibles.forEach(button => {
+      button.addEventListener("click", () => {
+        button.classList.toggle("active");
+        const content = button.nextElementSibling;
+        content.style.display = content.style.display === "block" ? "none" : "block";
+      });
+    });
+
+    // Waitlist form handler (stub)
+    document.getElementById("waitlist-form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Thanks for joining the waitlist!");
+    });
+
+    // Survey button
+    function openSurvey() {
+      window.open("https://form.jotform.com/251733407132045", "_blank");
+    }
+  </script>
+</body>
+</html>
