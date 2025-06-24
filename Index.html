@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NanoShelter™ | Pocket-Sized Waterproof Tent</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: url('nanoshelter-product-header.png') no-repeat center center fixed;
+      background-size: cover;
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #00ffae;
+      font-size: 2.5rem;
+      margin-top: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 1rem auto;
+    }
+    .countdown {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #00ffae;
+      margin: 2rem 0;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 400px;
+      margin: auto;
+    }
+    input, button {
+      padding: 0.8rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #00ffae;
+      color: black;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00d49c;
+    }
+    .benefits {
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      text-align: left;
+    }
+    .benefits h2 {
+      color: #00ffae;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+    .benefits ul {
+      list-style: none;
+      padding: 0;
+    }
+    .benefits li {
+      font-size: 1.1rem;
+      margin: 0.5rem 0;
+      padding-left: 1rem;
+      position: relative;
+    }
+    .benefits li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #00ffae;
+    }
+  </style>
+</head>
+<body>
+  <img src="1750697474500.png" alt="NanoShelter Logo" class="logo" />
+
+  <div class="brand-story" style="background-color: rgba(0,0,0,0.8); padding: 1.5rem; border-radius: 1rem; margin-top: 1.5rem;">
+    <h2 style="color: #00ffae;">Why We're Here</h2>
+    <p style="max-width: 800px; margin: auto; font-size: 1.1rem;">
+      <strong>The Problem:</strong> Nature is unpredictable. When the rain hits or wind howls, traditional tents are slow, heavy, and cumbersome. Urban travelers and outdoor lovers alike need a quick, compact solution.
+    </p>
+    <p style="max-width: 800px; margin: auto; font-size: 1.1rem;">
+      <strong>The Story:</strong> I was out with a couple of friends on the motorbike. It was forecasted to rain but not in the location we were travelling, so off we went with just the clothes we were wearing. We got to the destination and the heavens opened up with unbelievably loads of rain. We had no protection from the elements and carrying a tent with us on the go wasn't practical as they are bulky and heavy. And out popped the idea: wouldn't it be great if we had something small and compact that w...
+    </p>
+    <p style="max-width: 800px; margin: auto; font-size: 1.1rem;">
+      <strong>The Solution:</strong> <span style="color: #00ffae;">NanoShelter™</span> is a revolutionary, patent-pending micro-tent that folds into your pocket and deploys in under 10 seconds. 100% waterproof, ultralight, and built for modern on-the-go protection.
+    </p>
+  </div>
+
+  <p>The World’s First Pocket-Sized, Waterproof Pop-Up Tent</p>
+  <p>
+    Be the first to experience <strong style="color: #00ffae;">true freedom</strong> in every forecast.
+    Sign up below to get priority access, launch discounts, and early release alerts.
+  </p>
+
+  <div class="countdown" id="countdown"></div>
+
+  <form id="waitlist-form">
+    <input type="text" name="name" placeholder="Your Name" required />
+    <input type="email" name="email" placeholder="Your Email" required />
+    <button type="submit">Join the Waitlist</button>
+  </form>
+
+  <div class="benefits">
+    <h2>Why Choose <strong>NanoShelter™</strong>?</h2>
+    <p><strong>Shelter. Anywhere. Instantly.</strong> NanoShelter™ is the world’s first pocket-sized, waterproof pop-up tent — engineered for ultimate convenience, speed, and protection. Whether you're caught in sudden rain, camping light, or adventuring solo, NanoShelter makes sure you're never unprepared.</p>
+    <ul>
+      <li><strong>100% Waterproof Protection:</strong> Stay dry in any weather.</li>
+      <li><strong>Pocket-Sized Convenience:</strong> Fits easily in your jacket or cargo pocket.</li>
+      <li><strong>3-Second Setup:</strong> Pops up instantly. No poles. No stress.</li>
+      <li><strong>All-Terrain Utility:</strong> Use it anywhere — forest, fields, roadside.</li>
+      <li><strong>Ultra Lightweight & Durable:</strong> Built tough, carried light.</li>
+      <li><strong>Perfect for:</strong> Travel, hikes, festivals, emergencies & more.</li>
+    </ul>
+    <p><strong>NanoShelter™</strong> isn’t just a tent — it’s freedom in your pocket. Join the waitlist now for early access, launch discounts, and more!</p>
+  </div>
+
+  <script>
+    const form = document.getElementById("waitlist-form");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      await fetch("https://formspree.io/f/xvgrwakj", {
+        method: "POST",
+        body: data,
+        headers: {
+          Accept: "application/json",
+        },
+      });
+      window.location.href = "/thank-you.html";
+    });
+
+    const launchDate = new Date("2026-09-14T00:00:00").getTime();
+    const countdown = document.getElementById("countdown");
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      countdown.innerHTML = `Launching in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>
